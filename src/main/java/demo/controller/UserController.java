@@ -20,7 +20,7 @@ public class UserController {
 	@RequestMapping(value="/users", method=RequestMethod.GET)
 	public ResponseEntity<Iterable<User>> getAllUsers() {		
 		Iterable<User> allPolls = mUserRepository.findAll();
-		return new ResponseEntity<>(mUserRepository.findAll(),	HttpStatus.OK);
+		return new ResponseEntity<Iterable<User>>(mUserRepository.findAll(),	HttpStatus.OK);
 	}
 
 }
