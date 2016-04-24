@@ -6,6 +6,7 @@ import java.net.URI;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +23,6 @@ public class UserController {
 	
 	@RequestMapping(value="/users", method=RequestMethod.GET)
 	public ResponseEntity<Iterable<User>> getAllUsers() {		
-		Iterable<User> allPolls = mUserRepository.findAll();
 		return new ResponseEntity<Iterable<User>>(mUserRepository.findAll(),	HttpStatus.OK);
 	}
 
@@ -41,5 +41,25 @@ public class UserController {
 		HttpStatus.CREATED);
 
 	}
+	
+	@RequestMapping(value="/users/{userId}",
+			method=RequestMethod.GET)
+			public ResponseEntity<User> getPoll(@PathVariable Long userId)			{
+			User u = mUserRepository.findOne(userId);
+			return new ResponseEntity<User> (u, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/users/{userId}", method=RequestMethod.PUT)
+		public ResponseEntity<User> updatePoll(@RequestBody User user, @PathVariable Long userId) {
+			// Save the entity
+			User u = mUserRepository.save(user);
+			return new ResponseEntity<User>(HttpStatus.OK);
+	   }
+			
+	@RequestMapping(value="/users/{userId}", method=RequestMethod.DELETE)
+			public ResponseEntity<User> deleteUser(@PathVariable Long userId) {
+			mUserRepository.delete(userId);
+			return new ResponseEntity<User>(HttpStatus.OK);
+			}
 }
 
