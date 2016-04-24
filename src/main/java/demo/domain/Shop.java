@@ -71,17 +71,17 @@ public class Shop {
 		this.mShopLatCoord = mShopLatCoord;
 	}
 
-	public String getmShopUserOwner() {
+	public User getmShopUserOwner() {
 		return mShopUserOwner;
 	}
 
-	public void setmShopUserOwner(String mShopUserOwner) {
+	public void setmShopUserOwner(User mShopUserOwner) {
 		this.mShopUserOwner = mShopUserOwner;
 	}
 	
 	@Override
 	public String toString() {		
-		return getmId() +", "+getmShopName() +", "+getmShopUserOwner();
+		return getmId() +", "+getmShopName() ;
 	}
 	
 }
