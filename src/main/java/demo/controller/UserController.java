@@ -27,7 +27,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/users", method=RequestMethod.POST)
-	public ResponseEntity<User> createPoll(@RequestBody User user){
+	public ResponseEntity createPoll(@RequestBody User user){
 		user = mUserRepository.save(user);
 		// Set the location header for the newly created	resource
 		HttpHeaders responseHeaders = new HttpHeaders();
@@ -37,7 +37,7 @@ public class UserController {
 		.buildAndExpand(user.getmId())
 		.toUri();
 		responseHeaders.setLocation(newUserUri);
-		return new ResponseEntity<>(null, responseHeaders,
+		return new ResponseEntity(null, responseHeaders,
 		HttpStatus.CREATED);
 
 	}
