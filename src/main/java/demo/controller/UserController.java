@@ -44,15 +44,16 @@ public class UserController {
 	
 	@RequestMapping(value="/users/{userId}",
 			method=RequestMethod.GET)
-			public ResponseEntity<User> getPoll(@PathVariable Long userId)			{
+			public ResponseEntity<User> getUser(@PathVariable Long userId)			{
 			User u = mUserRepository.findOne(userId);
 			return new ResponseEntity<User> (u, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/users/{userId}", method=RequestMethod.PUT)
-		public ResponseEntity<User> updatePoll(@RequestBody User user, @PathVariable Long userId) {
+		public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable Long userId) {
 			// Save the entity
-			User u = mUserRepository.save(user);
+		
+			User u = mUserRepository.save(new User(userId, user.getmUserName(), user.getmUserLastName(), user.getmUserAdress()));
 			return new ResponseEntity<User>(HttpStatus.OK);
 	   }
 			

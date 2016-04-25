@@ -1,5 +1,6 @@
 package demo.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -28,10 +29,28 @@ public class User {
 	@Column(name="USER_ADRESS")
 	private String mUserAdress;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="USER_ID")
-	@OrderBy
-	private Set<Shop> mShops;
+	@OneToMany(mappedBy = "mUser")
+	private Set<Shop> mShops = new HashSet<Shop>();
+	
+	
+	
+	public User(Long mId, String mUserName, String mUserLastName, String mUserAdress) {
+		super();
+		this.mId = mId;
+		this.mUserName = mUserName;
+		this.mUserLastName = mUserLastName;
+		this.mUserAdress = mUserAdress;
+	}
+
+	//@OneToMany(cascade=CascadeType.ALL)
+	//@JoinColumn(name="USER_ID")
+	//@OrderBy
+	//private Set<Shop> mShops;
+
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Long getmId() {
 		return mId;

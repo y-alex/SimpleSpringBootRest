@@ -4,8 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Shop {
@@ -27,9 +28,41 @@ public class Shop {
 	@Column(name="SHOP_LAT_COORD")
 	private String mShopLatCoord;
 	
+	
+	
+	
+	public Shop() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Shop(String mShopName, String mShopImgUri, String mShopLonCoord, String mShopLatCoord, User mUser) {
+		super();
+		this.mShopName = mShopName;
+		this.mShopImgUri = mShopImgUri;
+		this.mShopLonCoord = mShopLonCoord;
+		this.mShopLatCoord = mShopLatCoord;
+		this.mUser = mUser;
+	}
+	
+	public Shop(Long mId, String mShopName, String mShopImgUri, String mShopLonCoord, String mShopLatCoord, User mUser) {
+		super();
+		this.mId = mId;
+		this.mShopName = mShopName;
+		this.mShopImgUri = mShopImgUri;
+		this.mShopLonCoord = mShopLonCoord;
+		this.mShopLatCoord = mShopLatCoord;
+		this.mUser = mUser;
+	}
+
+	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name="USER_ID")
-	private User mShopUserOwner;
+	private User mUser;
+	
+		
+	//@ManyToOne
+	//@JoinColumn(name="SHOP_USER_ID")
+	//private User mUser;
 
 	public Long getmId() {
 		return mId;
@@ -71,17 +104,26 @@ public class Shop {
 		this.mShopLatCoord = mShopLatCoord;
 	}
 
-	public User getmShopUserOwner() {
-		return mShopUserOwner;
-	}
+	//public User getmShopUserOwner() {
+	//	return mShopUserOwner;
+	//}
 
-	public void setmShopUserOwner(User mShopUserOwner) {
-		this.mShopUserOwner = mShopUserOwner;
-	}
+	//public void setmShopUserOwner(User mShopUserOwner) {
+	//	this.mShopUserOwner = mShopUserOwner;
+	//}
+	
 	
 	@Override
 	public String toString() {		
 		return getmId() +", "+getmShopName() ;
+	}
+
+	public User getmUser() {
+		return mUser;
+	}
+
+	public void setmUser(User mUser) {
+		this.mUser = mUser;
 	}
 	
 }
