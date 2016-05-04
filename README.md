@@ -22,9 +22,10 @@ PUT:
 Example:http://wildfly-yalek.rhcloud.com/users/2  Body: {"mUserName":"NewName","mUserLastName":"New LastName","mUserAdress":"Ukraine, Zhitomir, st BiggestSreat"}
 
 POST: /users
-Example:http://wildfly-yalek.rhcloud.com/users/1/shops  Body {"mShopName":"SuperCars2","mShopImgUri":"uri shop Cars2","mShopLonCoord":"30.5234","mShopLatCoord":"50.4501"}
+Example:http://wildfly-yalek.rhcloud.com/users  Body {"mUserName": "Vasya","mUserLastName":"Pupkin",  "mUserAdress" :"Ukraine, Kiev, st BigSreat"}
 
 POST: /users/{userId}/shops
 http://wildfly-yalek.rhcloud.com/users/1/shops Body {"mShopName":"FakeShop","mShopImgUri":"uri fake shop img","mShopLonCoord":"32.5234","mShopLatCoord":"51.4501"}
+
 DELETE : /users/{userId}
 
